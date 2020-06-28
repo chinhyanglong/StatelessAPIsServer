@@ -1,0 +1,28 @@
+Stateless APIs server: quản lý sinh viên, giáo viên, và khóa học
+sinh viên: mã số, họ tên, giới tính, ngày tháng năm sinh, địa chỉ (optional), 
+điểm đầu vào (số thập phân, thang điểm 10)
+giáo viên: mã số, họ tên, ngày tháng năm sinh, hình của giảng viên
+khóa học: mã số, tên khóa học, mô tả khóa học, cấp độ của khóa học (cơ bản, nâng cao, chuyên sâu) - dùng enum, 
+thời gian bắt đầu, thời gian kết thúc, thòi gian bắt đầu để đăng ký - khi đến thời gian bắt đầu khóa học 
+hoặc đủ số lượng sẽ không đăng ký được nữa, số lượng sinh viên có thể đăng ký tối đa
+1. api xem 1, xem nhièu, thêm, xóa, sửa cho từng table
+2. api cho sinh viên chọn 1 giáo viên làm cố vấn
+3. api cho sinh viên đăng ký khóa học
+4. khi tạo một khóa học, phải chọn 1 giáo viên cho khóa học đó
+5. api xem sinh viên đã đăng ký những khóa học nào, filter được các khóa nào chưa bắt đầu, khóa nào đang học, 
+khóa nào đã kết thúc
+6. api xem thông tin của 1 sinh viên kèm theo thông tin của giảng viên cố vấn
+7. api xem danh sách khóa học, kèm theo tên, hình của giáo viên nào đang được gán cho khóa học đó
+Thông báo được các lỗi NotFound như sinh viên không tồn tại, khóa học không tồn tại, giáo viên không tồn tại, 
+hoặc BadRequest như tạo một khóa học mà không assign giảng viên, sinh viên đăng ký vào 1 lớp đã đầy hoặc 
+đã quá thời gian đăng ký….. Tuân thủ Rest API.
+Tất cả API có khả năng get list đều phải phân trang.
+Có swagger để view các endpoint
+------------ 
+Đăng nhập và phân quyền
+Dùng JWT ở request header
+Phân loại ra những endpoint nào chỉ sinh viên dùng (đăng ký môn học), endpoint nào chỉ admin dùng 
+(tạo khóa học, …), endpoint nào không cần login vẫn dùng được (xem danh sách khóa học,…), endpoint nào 
+chỉ cần đã login không cần quyền gì cũng dùng được (view thông tin của 1 sinh viên, ….)
+--------
+khi chưa có authenticate cũng format endpoint sao cho khi gắn authenticate vào không cần thay đổi endpoint
