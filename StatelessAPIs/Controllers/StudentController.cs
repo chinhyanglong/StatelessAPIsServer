@@ -21,9 +21,9 @@ namespace StatelessAPIs.Controllers
         private readonly IStudentService _StudentService;
 
         
-        public StudentController(ApplicationDbContext db)
+        public StudentController(IStudentService studentService)
         {
-            _StudentService = new StudentService(db);
+            _StudentService = studentService;
         }
         [HttpDelete("{id}")]
         [Authorize(Policy = Policies.Admin)]

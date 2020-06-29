@@ -19,9 +19,9 @@ namespace StatelessAPIs.Controllers
     {
         private readonly ICourseService _CourseService;
 
-        public CourseController(ApplicationDbContext db)
+        public CourseController(ICourseService courseService)
         {
-            _CourseService = new CourseService(db);
+            _CourseService = courseService;
         }
         [HttpDelete("{id}")]
         [SwaggerOperation(Summary = "Delete Course by id")]

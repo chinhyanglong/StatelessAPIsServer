@@ -17,6 +17,8 @@ using StatelessAPIs.Data;
 using StatelessAPIs.Middleware;
 using StatelessAPIs.Models;
 using StatelessAPIs.Models.Dtos;
+using StatelessAPIs.Services;
+using StatelessAPIs.Services.Interface;
 
 namespace StatelessAPIs
 {
@@ -36,6 +38,9 @@ namespace StatelessAPIs
                 options.UseMySql(
                     Configuration.GetConnectionString("MySQLConnection")));
             services.AddControllersWithViews();
+            services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<ITeacherService, TeacherService>();
+            services.AddTransient<ICourseService, CourseService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {

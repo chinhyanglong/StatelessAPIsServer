@@ -18,9 +18,9 @@ namespace StatelessAPIs.Controllers
     public class TeacherController : ControllerBase
     {
         private readonly ITeacherService _TeacherService;
-        public TeacherController(ApplicationDbContext db)
+        public TeacherController(ITeacherService teacherService)
         {
-            _TeacherService = new TeacherService(db);
+            _TeacherService = teacherService;
         }
         [HttpDelete("{id}")]
         [Authorize(Policy = Policies.Admin)]
