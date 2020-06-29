@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2020 at 05:01 PM
+-- Generation Time: Jun 29, 2020 at 04:08 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `statelessapis`
 --
+CREATE DATABASE IF NOT EXISTS `statelessapis` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `statelessapis`;
 
 -- --------------------------------------------------------
 
