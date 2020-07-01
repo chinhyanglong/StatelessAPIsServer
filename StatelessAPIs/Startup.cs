@@ -100,14 +100,14 @@ namespace StatelessAPIs
             {
                 var F = services.BuildServiceProvider().GetService<IStringLocalizerFactory>();
                 var L = F.Create("ModelBindingMessages", "AspNetCoreLocalizationSample");
-                //options.ModelBindingMessageProvider.MissingKeyOrValueAccessor =
-                //    () => L["A value is required."];
+                options.ModelBindingMessageProvider.SetValueIsInvalidAccessor((x) => L["Null value is invalid", x]);
+
             })
             .AddDataAnnotationsLocalization()
             .AddViewLocalization();
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new[] { new CultureInfo("en"), new CultureInfo("fa") };
+                var supportedCultures = new[] { new CultureInfo("en"), new CultureInfo("vi") };
                 options.DefaultRequestCulture = new RequestCulture("en", "en");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
@@ -146,7 +146,7 @@ namespace StatelessAPIs
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            var supportedCultures = new[] { new CultureInfo("en"), new CultureInfo("fa") };
+            var supportedCultures = new[] { new CultureInfo("en"), new CultureInfo("vi") };
             app.UseRequestLocalization(new RequestLocalizationOptions()
             {
                 DefaultRequestCulture = new RequestCulture(new CultureInfo("en")),

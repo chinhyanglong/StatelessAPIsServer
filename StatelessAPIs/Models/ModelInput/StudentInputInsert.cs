@@ -9,6 +9,7 @@ namespace StatelessAPIs.Models.ModelInput
     public class StudentInputInsert
     {
         public string Code { get; set; }
+        [StringLength(256, MinimumLength = 0, ErrorMessage = "Length of {0} field should be between {2} and {1}.")]
         public string Name { get; set; }
         public bool Gender { get; set; }
         public DateTime DayOfBirth { get; set; }
