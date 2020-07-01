@@ -31,15 +31,28 @@ namespace StatelessAPIs.Services
 
         public void Insert(StudentInputInsert model)
         {
-            var student = new Student();
-            student.Code = model.Code;
-            student.Name = model.Name;
-            student.Gender = model.Gender;
-            student.DayOfBirth = model.DayOfBirth;
-            student.Address = model.Address;
-            student.EntryPoint = model.EntryPoint;
-            _context.Student.Add(student);
-            _context.SaveChanges();
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var student = new Student();
+                    student.Code = model.Code;
+                    student.Name = model.Name;
+                    student.Gender = model.Gender;
+                    student.DayOfBirth = model.DayOfBirth;
+                    student.Address = model.Address;
+                    student.EntryPoint = model.EntryPoint;
+                    _context.Student.Add(student);
+                    _context.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                }
+                
+            }
+            
         }
 
         public void Update(StudentInputUpdate model)
